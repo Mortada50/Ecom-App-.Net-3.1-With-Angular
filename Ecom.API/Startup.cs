@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Ecom.API.Middleware;
 using Ecom.infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +28,7 @@ namespace Ecom.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMemoryCache();
             services.AddControllers();
             services.InfrastructureConfiguration(Configuration);
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -39,7 +41,9 @@ namespace Ecom.API
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseMiddleware<ExceptionsMiddleware>(TimeSpan.FromSeconds(30));
+           // app.UseMiddleware<ExceptionsMiddleware>();
+            app.UseStatusCodePagesWithReExecute("/errors/{0}");
             app.UseHttpsRedirection();
 
             app.UseRouting();
