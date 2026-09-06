@@ -11,8 +11,8 @@ namespace Ecom.Core.Enitites.Product
 
         public int ProductId { get; set; }
 
-        [ForeignKey(nameof(ProductId))]
+        //[ForeignKey(nameof(ProductId))]
 
-        public virtual Product Product { get; set; }
+        //public virtual Product Product { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace Ecom.infrastructure.Data.Migrations
                 columns: new[] { "Id", "CategoryId", "Description", "Name", "Price" },
                 values: new object[] { 1, 1, "test", "test", 12m });
         }
-
+        
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DeleteData(
