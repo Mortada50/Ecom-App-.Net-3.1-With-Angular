@@ -28,6 +28,14 @@ namespace Ecom.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(op =>
+            {
+
+                op.AddPolicy("CORSPolicy", builder =>
+                {
+                    builder.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("https://localhost:4200");
+                });
+            });
             services.AddMemoryCache();
             services.AddControllers();
             services.InfrastructureConfiguration(Configuration);
@@ -41,6 +49,7 @@ namespace Ecom.API
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors("CORSPolicy");
             app.UseMiddleware<ExceptionsMiddleware>(TimeSpan.FromSeconds(30));
            // app.UseMiddleware<ExceptionsMiddleware>();
             app.UseStatusCodePagesWithReExecute("/errors/{0}");

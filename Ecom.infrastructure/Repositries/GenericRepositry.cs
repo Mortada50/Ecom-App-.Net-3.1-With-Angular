@@ -12,17 +12,14 @@ namespace Ecom.infrastructure.Repositries
 {
     public class GenericRepositry<T> : IGenericRepositry<T> where T : class
     {
-        private readonly AppDbContext _context;
+        protected readonly AppDbContext _context;
 
         public GenericRepositry(AppDbContext context)
         {
             _context = context;
         }
 
-        public GenericRepositry()
-        {
-
-        }
+      
         public async Task AddAsync(T entity)
         {
             await _context.Set<T>().AddAsync(entity);
@@ -76,5 +73,11 @@ namespace Ecom.infrastructure.Repositries
             _context.Entry(entity).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
+
+        public async Task<int> CountAsync()
+        {
+            return await _context.Set<T>().CountAsync();
+        }
+        
     }
 }

@@ -46,7 +46,7 @@ namespace Ecom.API.Middleware
                     var json = JsonSerializer.Serialize(response);
                     await context.Response.WriteAsync(json);
                 }
-                _next(context);
+               await _next(context);
             }
             catch (Exception ex)
             {
