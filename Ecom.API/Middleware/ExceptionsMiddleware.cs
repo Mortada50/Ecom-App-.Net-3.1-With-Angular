@@ -37,7 +37,7 @@ namespace Ecom.API.Middleware
             {
                 ApplySecurity(context);
 
-                if (IsRequestAllowen(context) == false)
+               /* if (IsRequestAllowen(context) == false)
                 {
                     context.Response.StatusCode = (int)HttpStatusCode.TooManyRequests;
                     context.Response.ContentType = "application/json";
@@ -45,7 +45,7 @@ namespace Ecom.API.Middleware
                         ApiExceptions((int)HttpStatusCode.TooManyRequests, "Too many request. please try again later");
                     var json = JsonSerializer.Serialize(response);
                     await context.Response.WriteAsync(json);
-                }
+                }*/
                await _next(context);
             }
             catch (Exception ex)

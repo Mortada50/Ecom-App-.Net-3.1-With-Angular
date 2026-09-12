@@ -36,7 +36,7 @@ namespace Ecom.API.Controllers
                  var totalCount = await work.ProductRepositry.CountAsync();
 
                 
-                return Ok(new Pagination<ProductDTO>(productParams.PageNumber, productParams.pageSize, totalCount, products)); 
+                return Ok(new Pagination<ProductDTO>(productParams.PageNumber, productParams.pageSize, products.totalCount, products.products)); 
 
             }
             catch (Exception ex)

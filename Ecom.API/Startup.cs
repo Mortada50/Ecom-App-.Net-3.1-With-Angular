@@ -33,7 +33,7 @@ namespace Ecom.API
 
                 op.AddPolicy("CORSPolicy", builder =>
                 {
-                    builder.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("https://localhost:4200");
+                    builder.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:4200");
                 });
             });
             services.AddMemoryCache();
@@ -50,6 +50,7 @@ namespace Ecom.API
                 app.UseDeveloperExceptionPage();
             }
             app.UseCors("CORSPolicy");
+            app.UseStaticFiles();
             app.UseMiddleware<ExceptionsMiddleware>(TimeSpan.FromSeconds(30));
            // app.UseMiddleware<ExceptionsMiddleware>();
             app.UseStatusCodePagesWithReExecute("/errors/{0}");

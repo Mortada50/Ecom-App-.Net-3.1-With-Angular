@@ -8,6 +8,7 @@ namespace Ecom.Core.DTO
    
     public class ProductDTO
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal NewPrice { get; set; }
@@ -24,6 +25,7 @@ namespace Ecom.Core.DTO
 
     public class AddProductDTO
     {
+
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal NewPrice { get; set; }
@@ -35,5 +37,11 @@ namespace Ecom.Core.DTO
     public class UpdateProductDTO : AddProductDTO
     {
         public int Id { get; set; }
+    }
+
+    public class ReturnProductDTO
+    {
+        public List<ProductDTO> products { get; set; }
+        public int totalCount { get; set; }
     }
 }
